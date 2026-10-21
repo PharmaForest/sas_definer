@@ -124,6 +124,3 @@ Load SAS package you want to use with the SPF's `%loadPackage()` macro.
 ### Enjoy!
 
 ---
-
-## License
-MIT License. See `license.sas`. The definexml macros are Copyright (c) 2016 Katja Glass (MIT License).
