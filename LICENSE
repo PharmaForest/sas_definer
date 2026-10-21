@@ -1,6 +1,10 @@
 MIT License
 
-Copyright (c) 2026 PharmaForest
+Copyright (c) 2026 PharmaForest (sas_definer package)
+
+Portions of this package (the macros definexml, definexml_attributes_for, _definexml_quote_xml) are derived from the definexml macros:
+
+Copyright (c) 2016 Katja Glass
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
