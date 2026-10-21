@@ -5,6 +5,8 @@ The package converts an Excel spec into SAS metadata datasets and then writes De
 `%definexml()` and its helper macros are based on the definexml macros by Katja Glass (PHUSE, MIT License, 2016), with modifications.
 Features for Define-XML 2.1 and Define-XML to Excel conversion are to be added.
 
+<img src="https://github.com/PharmaForest/sas_definer/blob/main/sas_definer_logo.png?raw=true" alt="SAS_definer" width="300"/>
+
 Available macros are as below. Support macros called in main macro are not listed here.
 - %spec2xml()                   : To create define.xml from an Excel spec in one step
 
