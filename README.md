@@ -19,7 +19,6 @@ Define-XML can be created with various tools. Some examples are listed below.
 | Category | Tool | Note |
 |----------|------|------|
 | Commercial / GUI | Pinnacle 21 (Enterprise) | Spec management and Define-XML generation |
-| Commercial / GUI | TSClinical | Define-XML generation |
 | SAS | PHUSE definexml macros | Basis of this package (SAS metadata datasets to Define-XML 2.0) |
 | SAS | SAS Clinical Standards Toolkit | Define-XML support, requires SAS licenses for the toolkit |
 | R | defineR, metacore / metatools / xportr (pharmaverse) | Spec handling and Define-XML related functions |
