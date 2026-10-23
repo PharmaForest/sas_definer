@@ -1,4 +1,4 @@
-# SAS_definer (latest version 0.1.0)
+# SAS_definer (latest version 0.1.1)
 A SAS package to provide macros for creating a CDISC **Define-XML** file from an Excel metadata specification.
 The Excel spec format is based on the one in *"Implementing CDISC Using SAS: An End-to-End Guide, Revised Second Edition"*.
 The package converts an Excel spec into SAS metadata datasets and then writes Define-XML (version 2.0).
@@ -34,7 +34,7 @@ an Excel spec reader and a wrapper macro) easy to install, load and reuse as a *
 
 ---
 
-## %spec2xml
+## %createDefine
 
 ### Purpose:
     Creates a Define-XML file directly from a metadata specification Excel file.
@@ -48,7 +48,7 @@ an Excel spec reader and a wrapper macro) easy to install, load and reuse as a *
 
 ### Example usage:
 ~~~sas
-%spec2xml(
+%createDefine(
     specfile = C:\path\to\ADAM_METADATA_dummy.xlsx,
     outfile  = C:\path\to\define.xml
 )
@@ -58,6 +58,7 @@ A dummy specification (`ADAM_METADATA_dummy.xlsx`) is included as additional con
 
 
 ## Version history
+0.1.1 : Changed macro name from %spec2xml to %createDefine  
 0.1.0 : Initial version
 
 ---
