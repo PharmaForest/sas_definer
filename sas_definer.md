@@ -9,17 +9,17 @@
 ### Version information:
   
 - Package: sas_definer
-- Version: 0.1.0
-- Generated: 2026-10-21T09:43:00
+- Version: 0.1.1
+- Generated: 2026-10-23T13:23:49
 - Author(s): Ryo Nakaya (nakaya.ryou@gmail.com)
 - Maintainer(s): PharmaForest
 - License: MIT
-- File SHA256: `F*7A9A30CC26BD92C3D55B577143D24BBE04BD8EAB0724A5F3C395DD078A8E902F` for this version
-- Content SHA256: `C*ACD04F3FDB6AF84CA39F61EF1B820D1B61AAECBCEA458E83ABB33CBDC231F595` for this version
+- File SHA256: `F*4D347F3DEBEC6E4EC4D9CFE633277EC44B8677893F45FC82AE0C5123E8D871EE` for this version
+- Content SHA256: `C*E5067EFB86132688BFC008C2A5BB8DA0D43BC722F32F1F055BC6A7E43C23E192` for this version
   
 ---
  
-# The `sas_definer` package, version: `0.1.0`;
+# The `sas_definer` package, version: `0.1.1`;
   
 ---
  
@@ -33,7 +33,7 @@
 
   | Macro | Description |
   |-------|-------------|
-  | `%spec2xml()` | Wrapper. Runs `%spec2meta()` and then `%definexml()` to create define.xml from an Excel spec. |
+  | `%createdefine()` | Wrapper. Runs `%spec2meta()` and then `%definexml()` to create define.xml from an Excel spec. |
   | `%spec2meta()` | Reads the Excel spec and creates the SAS metadata datasets (HEADER, DATASETS, VARIABLES, VALUELEVEL, METHODS, CODES, COMMENTS, DOCUMENTS, ...). VALUELISTOID and ITEMOID are auto-generated. WHERECLAUSEOID is used as is when the sheet has any value, otherwise it is auto-generated. |
   | `%definexml()` | Generates the Define-XML (version 2.0) from the SAS metadata datasets. |
   | `%definexml_attributes_for()` | Provides ATTRIB statements for the input metadata datasets. |
@@ -48,7 +48,7 @@
 
   1. Convert Excel spec of the format in *"Implementing CDISC Using SAS: An End-to-End Guide, Revised Second Edition"* to SAS metadata (`%spec2meta`).
   2. Convert SAS metadata datasets to XML in Define-XML version 2.0 (`%definexml`).
-  3. Create define.xml from an Excel spec in one step (`%spec2xml`).
+  3. Create define.xml from an Excel spec in one step (`%createdefine`).
  
   ## Planned (tentative)
 
@@ -91,18 +91,43 @@ localization (only if additional content was deployed during the installation pr
 # The `sas_definer` package content
 The `sas_definer` package consists of the following content:
  
-1. [`%definexml()` macro ](#definexml-macro-1 )
-2. [`%definexml_attributes_for()` macro ](#definexmlattributesfor-macro-2 )
-3. [`%definexml_quote_xml()` macro ](#definexmlquotexml-macro-3 )
-4. [`%spec2meta()` macro ](#spec2meta-macro-4 )
-5. [`%spec2xml()` macro ](#spec2xml-macro-5 )
+1. [`%createdefine()` macro ](#createdefine-macro-1 )
+2. [`%definexml()` macro ](#definexml-macro-2 )
+3. [`%definexml_attributes_for()` macro ](#definexmlattributesfor-macro-3 )
+4. [`%definexml_quote_xml()` macro ](#definexmlquotexml-macro-4 )
+5. [`%spec2meta()` macro ](#spec2meta-macro-5 )
   
  
 6. [License note](#license)
   
 ---
  
-## `%definexml()` macro <a name="definexml-macro-1"></a> ######
+## `%createdefine()` macro <a name="createdefine-macro-1"></a> ######
+
+### Macro `%createdefine()`
+
+Creates a Define-XML file directly from a metadata specification Excel file.
+It runs `%spec2meta()` to create the metadata datasets in WORK,
+and then `%definexml()` to write the Define-XML file.
+
+#### Parameters
+
+- `specfile` : full path of the specification Excel file (xlsx) (required)
+- `outfile` : output Define-XML file name (required)
+
+#### Example
+
+~~~sas
+%createdefine(
+  specfile=C:\path\to\ADAM_METADATA.xlsx,
+  outfile=C:\path\to\define.xml
+);
+~~~
+
+  
+---
+ 
+## `%definexml()` macro <a name="definexml-macro-2"></a> ######
 
 ### Macro `%definexml()`
 
@@ -133,7 +158,7 @@ Original work: Copyright (c) 2016 Katja Glass (MIT License).
   
 ---
  
-## `%definexml_attributes_for()` macro <a name="definexmlattributesfor-macro-2"></a> ######
+## `%definexml_attributes_for()` macro <a name="definexmlattributesfor-macro-3"></a> ######
 
 ### Macro `%definexml_attributes_for()`
 
@@ -157,7 +182,7 @@ run;
   
 ---
  
-## `%definexml_quote_xml()` macro <a name="definexmlquotexml-macro-3"></a> ######
+## `%definexml_quote_xml()` macro <a name="definexmlquotexml-macro-4"></a> ######
 
 ### Macro `%definexml_quote_xml()` (internal)
 
@@ -173,7 +198,7 @@ Original work: Copyright (c) 2016 Katja Glass (MIT License).
   
 ---
  
-## `%spec2meta()` macro <a name="spec2meta-macro-4"></a> ######
+## `%spec2meta()` macro <a name="spec2meta-macro-5"></a> ######
 
 ### Macro `%spec2meta()`
 
@@ -190,31 +215,6 @@ plus `WHERE_CLAUSES` and `ANALYSIS_RESULTS` (not in the PHUSE template).
 
 ~~~sas
 %spec2meta(specfile=C:\path\to\ADAM_METADATA.xlsx);
-~~~
-
-  
----
- 
-## `%spec2xml()` macro <a name="spec2xml-macro-5"></a> ######
-
-### Macro `%spec2xml()`
-
-Creates a Define-XML file directly from a metadata specification Excel file.
-It runs `%spec2meta()` to create the metadata datasets in WORK,
-and then `%definexml()` to write the Define-XML file.
-
-#### Parameters
-
-- `specfile` : full path of the specification Excel file (xlsx) (required)
-- `outfile` : output Define-XML file name (required)
-
-#### Example
-
-~~~sas
-%spec2xml(
-  specfile=C:\path\to\ADAM_METADATA.xlsx,
-  outfile=C:\path\to\define.xml
-);
 ~~~
 
   
