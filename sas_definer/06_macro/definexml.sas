@@ -40,47 +40,6 @@ Original work: Copyright (c) 2016 Katja Glass (MIT License).
   , indat_documents  = documents)
 / DES = 'Create Define XML out of information datasets';
 
-/*******************************************************************************
- * Macro rely on: none
- *******************************************************************************
- * Purpose          : Create Define XML out of information datasets
- * Programming Spec :
- * Validation Level : n.a.
- * Parameters       :
- *      outfile          : output file name
- *      indat_header     : input dataset containing general information
- *      indat_datasets   : input dataset containing datasets information
- *      indat_variables  : input dataset containing variables information
- *      indat_valuelevel : input dataset containing value level information
- *      indat_codes      : input dataset containing code information
- *      indat_methods    : input dataset containing method information
- *      indat_comment    : input dataset containing comment information
- *      indat_documents  : input dataset containing document information
- *
- * SAS Version      : HP-UX 9.2
- *******************************************************************************
- * Preconditions    :
- *     Macrovar. needed:
- *     Datasets  needed: INDAT_HEADER, INDAT_DATASETS and INDAT_VARIABLES must exist
- *     Ext.Prg/Mac used:
- * Postconditions   :
- *     Macrovar created:
- *     Output   created:  OUTFILE XML is created
- *     Datasets created:
- * Comments         :
- *******************************************************************************
- * Author(s)        : sgqyq (Katja Glass) / date: 28SEP2016 / V1.0
- *******************************************************************************
- * Change History   :
- ******************************************************************************/
-/* Changed by       :
- * Reason           :
- ******************************************************************************/
-
-/*******************************************************************************
- * Examples         :
-   %definexml();
- ******************************************************************************/
 
     %LOCAL macro mversion _starttime macro_parameter_error;
     %LET macro    = &sysmacroname.;
@@ -355,13 +314,14 @@ Original work: Copyright (c) 2016 Katja Glass (MIT License).
         PUT '<?xml version="1.0" encoding="UTF-8"?>';
         PUT '<?xml-stylesheet type="text/xsl" href="' stylesheet +(-1) '"?>';
 
-        PUT "<!-- ********************************************************************************** -->";
+ /*       PUT "<!-- ********************************************************************************** -->";
         line = "<!-- File: &l_file" || REPEAT(' ',76 - LENGTH("&l_file")) || "-->";
         PUT line;
         line = "<!-- Author: &sysuserid" || REPEAT(' ',74 - LENGTH("&sysuserid")) || "-->";
         PUT line;
         PUT "<!-- Description: This is the define.xml for a study                                    -->";
         PUT "<!-- ********************************************************************************** -->";
+*/
 
         PUT @1 '<ODM';
         PUT @3 'xmlns="' _xmlns +(-1) '"';

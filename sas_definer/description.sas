@@ -1,7 +1,7 @@
 Type: Package
 Package: sas_definer
 Title: Create CDISC Define-XML
-Version: 0.1.0
+Version: 0.1.1
 Author: Ryo Nakaya (nakaya.ryou@gmail.com)
 Maintainer: PharmaForest
 License: MIT
@@ -20,7 +20,7 @@ DESCRIPTION START:
 
   | Macro | Description |
   |-------|-------------|
-  | `%spec2xml()` | Wrapper. Runs `%spec2meta()` and then `%definexml()` to create define.xml from an Excel spec. |
+  | `%createdefine()` | Wrapper. Runs `%spec2meta()` and then `%definexml()` to create define.xml from an Excel spec. |
   | `%spec2meta()` | Reads the Excel spec and creates the SAS metadata datasets (HEADER, DATASETS, VARIABLES, VALUELEVEL, METHODS, CODES, COMMENTS, DOCUMENTS, ...). VALUELISTOID and ITEMOID are auto-generated. WHERECLAUSEOID is used as is when the sheet has any value, otherwise it is auto-generated. |
   | `%definexml()` | Generates the Define-XML (version 2.0) from the SAS metadata datasets. |
   | `%definexml_attributes_for()` | Provides ATTRIB statements for the input metadata datasets. |
@@ -35,7 +35,7 @@ DESCRIPTION START:
 
   1. Convert Excel spec of the format in *"Implementing CDISC Using SAS: An End-to-End Guide, Revised Second Edition"* to SAS metadata (`%spec2meta`).
   2. Convert SAS metadata datasets to XML in Define-XML version 2.0 (`%definexml`).
-  3. Create define.xml from an Excel spec in one step (`%spec2xml`).
+  3. Create define.xml from an Excel spec in one step (`%createdefine`).
  
   ## Planned (tentative)
 
