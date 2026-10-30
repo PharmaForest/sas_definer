@@ -3,7 +3,7 @@ A SAS package to provide macros for creating a CDISC **Define-XML** file from an
 The Excel spec format is based on the one in *"Implementing CDISC Using SAS: An End-to-End Guide, Revised Second Edition"*.
 The package converts an Excel spec into SAS metadata datasets and then writes Define-XML (version 2.0).
 `%definexml()` and its helper macros are based on the definexml macros by Katja Glass (PHUSE, MIT License, 2016), with modifications.
-Features for Define-XML 2.1 and Define-XML to Excel conversion are to be added.
+Support for Define-XML 2.1, reverse conversion to Excel, and Analysis Results Metadata (ARM) is planned.
 
 <img src="https://github.com/PharmaForest/sas_definer/blob/main/sas_definer_logo.png?raw=true" alt="SAS_definer" width="300"/>
 
@@ -14,23 +14,54 @@ Available macros are as below. Support macros called in main macro are not liste
 
 ## Why this package? (Define-XML creation tools)
 
-Define-XML can be created with various tools. Some examples are listed below.
+Several tools are available to generate or manage CDISC Define-XML, with different input formats, supported versions, and execution environments.
 
-| Category | Tool | Note |
-|----------|------|------|
-| Commercial / GUI | Pinnacle 21 (Enterprise) | Spec management and Define-XML generation |
-| SAS | PHUSE definexml macros | Basis of this package (SAS metadata datasets to Define-XML 2.0) |
-| SAS | SAS Clinical Standards Toolkit | Define-XML support, requires SAS licenses for the toolkit |
-| R | defineR, metacore / metatools / xportr (pharmaverse) | Spec handling and Define-XML related functions |
-| Python | odmlib and others | CDISC ODM / Define-XML handling libraries |
+| Tool | Environment | Main capabilities | Define-XML version | License / access |
+|------|-------------|-------------------|--------------------|------------------|
+| [Pinnacle 21](https://help.pinnacle21.certara.net/en/articles/9736610-download-pinnacle-21-community) | GUI / application | Define-XML generation and validation; Community and Enterprise editions | 1.0, 2.0, 2.1 | P21 OSS License (Community); commercial (Enterprise) |
+| [tsClinical](https://github.com/tsClinical-OSS-Community/tsc-desktop) | GUI / application | Excel ↔ Define-XML conversion, XML-to-HTML output, and schema validation | 2.0, 2.1 | Apache-2.0 (Desktop Tools) |
+| [SAS Clinical Standards Toolkit / openCST](https://github.com/sassoftware/clinical-standards-toolkit) | SAS | Clinical standards metadata framework, including Define-XML generation | 2.0, 2.1 | Apache-2.0 (openCST; archived) |
+| [defineR](https://github.com/dbosak01/defineR) | R | Generate Define-XML from spreadsheet-based metadata | 2.0 | CC0-1.0 |
+| [odmlib](https://github.com/swhume/odmlib) | Python | Create and process CDISC ODM and Define-XML | 1.0, 2.0, 2.1 | MIT |
+| [PHUSE %defineXML](https://github.com/phuse-org/phuse-scripts/tree/master/lang/SAS/datahandle/defineXML) | SAS | Generate Define-XML from SAS metadata datasets | 2.0 | MIT |
+| [%make_define](https://github.com/wyp1125/SAS-Clinical-Trials-Toolkit/blob/master/make_define.sas) | SAS | Generate Define-XML components from Excel metadata | 1.0 | GPL-3.0 |
 
-(The list is not exhaustive. Please check each tool for the supported Define-XML versions.)
+*This is a non-exhaustive overview based on the project introduction slides. Versions and licensing may change; consult each project's documentation for current details. The license shown for openCST refers to the linked open-source repository, not every distribution of SAS CST.*
 
-Many of them require commercial licenses or non-SAS environments.
-In many pharmaceutical companies and CROs, SAS is still the main environment for creating ADaM/SDTM datasets,
-so a **SAS-native, open-source** implementation is useful.
-The purpose of this package is to make the SAS implementation (the PHUSE definexml macros plus
-an Excel spec reader and a wrapper macro) easy to install, load and reuse as a **SAS package**.
+Although these tools offer useful capabilities, they may require a commercial application, an R/Python environment, or a different metadata specification format. SAS remains a common environment for ADaM and SDTM programming, creating a need for an easy-to-use, **SAS-native, open-source workflow**.
+
+### What SAS_definer adds
+
+The original PHUSE `%defineXML` macros already provide the step from **SAS metadata datasets to Define-XML 2.0**. SAS_definer builds on this foundation by adding an Excel specification reader and an end-to-end wrapper:
+
+```text
+Excel metadata specification
+  (format based on "Implementing CDISC Using SAS")
+              |
+              v
+         %spec2meta()
+              |
+              v
+      SAS metadata datasets
+              |
+              v
+          %definexml()
+              |
+              v
+        Define-XML 2.0
+```
+
+`%createDefine()` runs the conversion in one step, from the Excel specification to the final Define-XML file. The Excel specification format is based on *Implementing CDISC Using SAS: An End-to-End Guide*, which is also the basis for metadata inputs used by defineR and `%make_define`.
+
+Packaging this workflow with the **SAS Packages Framework (SPF)** makes it easier to install, load, reuse, and extend the macros in an existing SAS environment.
+
+### Planned extensions
+
+- **Define-XML 2.1 support:** Extend the current Define-XML 2.0 generation workflow to version 2.1.
+- **Define-XML to Excel conversion:** Add a reverse workflow to generate a metadata specification workbook from an existing Define-XML file.
+- **Analysis Results Metadata (ARM):** Extend metadata support to include analysis results metadata.
+
+Contributions to development, testing, and discussions are welcome via the [PharmaForest sas_definer repository](https://github.com/PharmaForest/sas_definer).
 
 ---
 
