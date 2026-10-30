@@ -28,7 +28,7 @@ Several tools are available to generate or manage CDISC Define-XML, with differe
 
 *This is a non-exhaustive overview based on the project introduction slides. Versions and licensing may change; consult each project's documentation for current details. The license shown for openCST refers to the linked open-source repository, not every distribution of SAS CST.*
 
-Although these tools offer useful capabilities, they may require a commercial application, an R/Python environment, or a different metadata specification format. SAS remains a common environment for ADaM and SDTM programming, creating a need for an easy-to-use, **SAS-native, open-source workflow**.
+Although these tools offer useful capabilities, they may require a commercial application, an R/Python environment, or a different metadata specification format.
 
 ### What SAS_definer adds
 
